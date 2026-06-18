@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VoltaAI - AI Energy Consultant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+
+        /* NAV */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            border-bottom: 1px solid #222;
+        }
+
+        nav .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #00ff88;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #00ff88;
+        }
+
+        /* HERO */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 60px;
+        }
+
+        .hero .tag {
+            background-color: #111;
+            border: 1px solid #333;
+            color: #00ff88;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 30px;
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            max-width: 800px;
+            margin-bottom: 24px;
+            animation: fadeUp 0.6s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 span {
+            color: #00ff88;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #aaa;
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            animation: fadeUp 0.6s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero .buttons {
+            display: flex;
+            gap: 16px;
+            animation: fadeUp 0.6s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .btn-primary {
+            background-color: #00ff88;
+            color: #000;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .btn-primary:hover {
+            background-color: #00cc6a;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid #333;
+        }
+
+        .btn-secondary:hover {
+            border-color: #00ff88;
+            color: #00ff88;
+        }
+
+        /* STATS */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 60px;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 40px;
+            font-weight: 800;
+            color: #00ff88;
+            margin-bottom: 8px;
+        }
+
+        .stat p {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* SERVICES */
+        .services {
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 36px;
+            margin-bottom: 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 32px;
+            text-align: left;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            border-color: #00ff88;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+        }
+
+        .service-card .icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* WHY US */
+        .why {
+            padding: 80px 60px;
+            background-color: #0f0f0f;
+            text-align: center;
+        }
+
+        .why h2 {
+            font-size: 36px;
+            margin-bottom: 60px;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .why-card {
+            background-color: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 28px;
+            text-align: left;
+        }
+
+        .why-card h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #00ff88;
+        }
+
+        .why-card p {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #555;
+            font-size: 13px;
+            border-top: 1px solid #222;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .hero {
+                padding: 80px 24px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero .buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary, .btn-secondary {
+                text-align: center;
+            }
+
+            .stats {
+                flex-wrap: wrap;
+                gap: 40px;
+                padding: 40px 24px;
+            }
+
+            .services {
+                padding: 60px 24px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why {
+                padding: 60px 24px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                padding: 60px 24px;
+            }
+
+            .cta h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="logo">VoltaAI</div>
+        <div>
+            <a href="#">Services</a>
+            <a href="#">About</a>
+            <a href="mailto:you@email.com">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="tag">⚡ AI + Energy</div>
+        <h1>We Make Energy Companies <span>AI-Ready</span></h1>
+        <p>From AI search visibility to compliance auditing and intelligent automation — we help energy companies navigate the AI revolution.</p>
+        <div class="buttons">
+            <a href="mailto:you@email.com" class="btn-primary">Get In Touch</a>
+            <a href="#services" class="btn-secondary">Our Services</a>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stat">
+            <h3>3</h3>
+            <p>Core Services</p>
+        </div>
+        <div class="stat">
+            <h3>2</h3>
+            <p>Continents</p>
+        </div>
+        <div class="stat">
+            <h3>US + EU</h3>
+            <p>Markets Served</p>
+        </div>
+        <div class="stat">
+            <h3>100%</h3>
+            <p>Energy Focused</p>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <h2>What We Do</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon">🔍</div>
+                <h3>GEO — AI Visibility</h3>
+                <p>Get your brand discovered when people search on Perplexity, ChatGPT, and Claude.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🛡️</div>
+                <h3>AI Compliance Auditing</h3>
+                <p>Evaluate your AI systems for bias, risk, and EU AI Act compliance before regulators do.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🤖</div>
+                <h3>Agentic Automation</h3>
+                <p>Build AI agent systems that automate your research, reporting, and repetitive workflows.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="why">
+        <h2>Why VoltaAI</h2>
+        <div class="why-grid">
+            <div class="why-card">
+                <h4>🇪🇸 EU Regulation Experts</h4>
+                <p>Based in Madrid, we understand the EU AI Act inside out and help you stay ahead of compliance requirements.</p>
+            </div>
+            <div class="why-card">
+                <h4>🇺🇸 US Market Access</h4>
+                <p>Our US-based partner brings deep energy industry research and direct access to American energy companies.</p>
+            </div>
+            <div class="why-card">
+                <h4>⚡ Energy Specialists</h4>
+                <p>We don't serve every industry. We go deep on energy — which means better results for your specific challenges.</p>
+            </div>
+            <div class="why-card">
+                <h4>🚀 Early Mover Advantage</h4>
+                <p>AI is transforming energy right now. We help you lead that transformation instead of playing catch up.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Ready To Become <span style="color:#00ff88">AI-Ready?</span></h2>
+        <p>Let's talk about how AI can transform your energy business.</p>
+        <a href="mailto:you@email.com" class="btn-primary">Start The Conversation</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 VoltaAI
+         · Madrid 🇪🇸 + USA 🇺🇸 · Built with AI
+    </footer>
+
+</body>
+</html>
